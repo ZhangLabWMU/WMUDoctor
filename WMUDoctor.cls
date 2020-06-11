@@ -134,13 +134,13 @@
         \end{tabular}
     \begin{tabular}{rl}%标题右对齐，内容左对齐
     	{\bf \WMU@label@author} &
-    	{\heiti\zihao{3} \@author}\\[1.2cm]%作者信息
+    	{\heiti\zihao{3} \@author}\\[0.40cm]%作者信息
     	{\bf \WMU@label@major} &
-    	{\heiti\zihao{3} \the\major}\\[1.2cm]%学科专业
+    	{\heiti\zihao{3} \the\major}\\[0.40cm]%学科专业
     	{\bf \WMU@label@studytype} &
-    	{\heiti\zihao{3} \the\studytype} \\[1.2cm]%培养类型
+    	{\heiti\zihao{3} \the\studytype} \\[0.40cm]%培养类型
     	{\bf \WMU@label@advisor} &
-    	{\heiti\zihao{3} \the\advisor} \\[1.2cm]%指导老师
+    	{\heiti\zihao{3} \the\advisor} \\[0.40cm]%指导老师
     \end{tabular}
         \par
         \vspace{70pt}
