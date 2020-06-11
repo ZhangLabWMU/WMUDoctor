@@ -1,7 +1,7 @@
 \NeedsTeXFormat{LaTeX2e}[1999/12/01]
-\ProvidesClass{HUNNUthesis}[2019/12/30 V1.0 Thesis for HUNNUer]
+\ProvidesClass{WMUDoctor}[2020/06/11 V1.0 Thesis for WMUer]
 \LoadClass[a4paper,UTF8,openany,oneside]{ctexbook}
-\AtEndOfPackage{\input{HUNNU.cfg}}%很关键配置文件
+\AtEndOfPackage{\input{WMU.cfg}}%很关键配置文件
 %%=======论文页边距一般要求：上边距2.54cm、下边距2.54cm,左右边距3.00cm,页眉1.50cm,页脚1.75cm
 \RequirePackage[top=2.54cm, bottom=2.54cm, outer=3.00cm, inner=3.00cm, headheight=1.5 cm, footskip=1.75cm, heightrounded]{geometry}
 %======连续参考文献连接起来
@@ -94,10 +94,9 @@
 \titleformat{\subsubsection}{\zihao{-4}\heiti}{\thesubsubsection}{0.5em}{}
 \titlespacing{\subsubsection}{0pt}{6pt}{6pt}
 %%=======标题页信息
-\newtoks\code%专业代码
-\newtoks\college%学院
-\newtoks\serialnumber%学号
-\newtoks\major%专业年级
+\newtoks\code%单位代码
+\newtoks\studytype%培养类型
+\newtoks\major%学科专业
 \newtoks\advisor%指导老师
 \newtoks\titlextra%标题多余一行时添加
 \newtoks\entitle%英文标题
@@ -106,18 +105,18 @@
 \newtoks\submitmonth%提交月份
 %%=======标题页
 %需要添加循环函数，判定多于一行的情况
-\def\HUNNU@underline[#1]#2{%
+\def\WMU@underline[#1]#2{%
     \underline{\hbox to #1{\hfill#2\hfill}}}
-\def\HUNNUunderline{\@ifnextchar[\HUNNU@underline\underline}
+\def\WMUunderline{\@ifnextchar[\WMU@underline\underline}
 \renewcommand\maketitle{%封面样式
     \cleardoublepage
     \thispagestyle{empty}
     \begin{center}
-    	\rightline{\HUNNU@label@code\HUNNUunderline[2.5cm]{\bf\heiti\zihao{4}\the\code}}%插入专业代码
+    	\rightline{\WMU@label@code\WMUunderline[2.5cm]{\bf\heiti\zihao{4}\the\code}}%插入单位代码
     	\vspace{0.75cm}%设置垂直间距
-        \includegraphics[width=10.5cm]{hunnu.bmp}\\%插入师大图标logo
+        \includegraphics[width=12.43cm]{wmu.jpg}\\%插入温医大图标
          \vspace{0.25cm}%设置垂直间距
-        {\bf\heiti\zihao{-0}\HUNNU@label@thesis\\}%
+        {\bf\heiti\zihao{-0}\WMU@label@thesis\\}%
         \vspace{1.25cm}
         \zihao{4}
         \def\tabcolsep{6pt}
@@ -125,34 +124,27 @@
         \newcounter{title_str_number}
         \vspace*{50pt}
         \begin{tabular}{rl}%标题右对齐，内容左对齐
-            \bf \heiti \HUNNU@label@titleZh%中文标题折行输出
+            \bf \songti \WMU@label@titleZh%中文标题折行输出
             \forloop{title_str_number}{1}{\value{title_str_number}<6}{%整个循环不会超过6
                 \StrFindGroup{\@title}{\value{title_str_number}}[\mygroup]%
                 \IfStrEq{\mygroup}{}{}{%
-                    & {\StrFindGroup{\@title}{\value{title_str_number}}[\mygroup]\HUNNUunderline[258pt]{\bf \heiti\fontspec{Times New Roman}\zihao{3}\mygroup}}\\[0.40cm]%
+                    & {\StrFindGroup{\@title}{\value{title_str_number}}[\mygroup]\WMUunderline[258pt]{\bf \heiti\fontspec{Times New Roman}\zihao{3}\mygroup}}\\[0.40cm]%
                 }%
             }%
-            \bf \heiti \HUNNU@label@titleEn%英文标题折行输出
-            \forloop{title_str_number}{1}{\value{title_str_number}<6}{%
-                \StrFindGroup{\the\entitle}{\value{title_str_number}}[\mygroup]%
-                \IfStrEq{\mygroup}{}{}{%
-                    & {\StrFindGroup{\the\entitle}{\value{title_str_number}}[\mygroup]\HUNNUunderline[258pt]{\fontspec{Times New Roman-Bold}\zihao{3}\mygroup}}\\[0.40cm]%
-                }%
-            }%
-            {\bf\heiti\HUNNU@label@author} &
-            {\HUNNUunderline[258pt]{\bf\heiti\zihao{3}\@author}}\\[0.40cm]%作者信息
-            {\bf\heiti \HUNNU@label@serialnumber} &
-            {\HUNNUunderline[258pt]{\bf\heiti\zihao{3}  \the\serialnumber}}\\[0.40cm]%学号
-            {\bf\heiti \HUNNU@label@college} &
-            {\HUNNUunderline[258pt]{\bf \heiti  \zihao{3} \the\college}} \\[0.40cm]%学院
-            {\bf\heiti \HUNNU@label@major} &
-            {\HUNNUunderline[258pt]{\bf \heiti  \zihao{3} \the\major}}\\[0.40cm]%专业年级
-            {\bf\heiti \HUNNU@label@advisor} &
-            {\HUNNUunderline[258pt]{\bf\heiti\zihao{3}  \the\advisor}} \\[0.40cm]%指导老师
         \end{tabular}
+    \begin{tabular}{rl}%标题右对齐，内容左对齐
+    	{\bf \WMU@label@author} &
+    	{\heiti\zihao{3} \@author}\\[1.2cm]%作者信息
+    	{\bf \WMU@label@major} &
+    	{\heiti\zihao{3} \the\major}\\[1.2cm]%学科专业
+    	{\bf \WMU@label@studytype} &
+    	{\heiti\zihao{3} \the\studytype} \\[1.2cm]%培养类型
+    	{\bf \WMU@label@advisor} &
+    	{\heiti\zihao{3} \the\advisor} \\[1.2cm]%指导老师
+    \end{tabular}
         \par
         \vspace{70pt}
-        {\bf\heiti\zihao{3}二〇{\the\submityear}年{\the\submitmonth}月}
+        {\bf\zihao{3}二〇 \the\submityear 年 \the\submitmonth 月}
     \end{center}
     \clearpage
 }
@@ -199,18 +191,18 @@
     \par \fontspec{Times New Roman}\zihao{4}\textbf{Key Words: } \fontspec{Times New Roman}\zihao{-4} #2}
 }
 %=======空格
-\newcommand\HUNNUspace{\phantom{永}}
+\newcommand\WMUspace{\phantom{永}}
 %=======附录页和感谢页
 \newcommand{\Appendix}{%将附录添加到目录中
     \setcounter{section}{0}
     \renewcommand{\thechapter}{A}%
 	\addcontentsline{toc}{chapter}{附\qquad 录}
-    \chapter*{附\HUNNUspace\HUNNUspace 录}
+    \chapter*{附\WMUspace\WMUspace 录}
     \zihao{5}
 }
 \newcommand{\Thanks}{%将致谢添加到目录中
 	\addcontentsline{toc}{chapter}{致\qquad 谢}
-    \chapter*{致\HUNNUspace\HUNNUspace 谢}
+    \chapter*{致\WMUspace\WMUspace 谢}
     \zihao{-4}\fangsong
 }
 %========超链接
@@ -280,10 +272,10 @@
 \RequirePackage{ }
 \newcommand{\printbib}{
 \zihao{5}
-\bibliographystyle{hunnubib}
+\bibliographystyle{WMUbib}
 \addcontentsline{toc}{chapter}{参考文献}
 \bibliography{\the\bibdatabase}
 }
 \endinput
 %%
-%% End of file `HUNNUthesis.cls'.
+%% End of file `WMUthesis.cls'.
