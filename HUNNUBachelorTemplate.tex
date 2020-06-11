@@ -1,0 +1,59 @@
+% !TEX TS-program = xelatex
+% !TEX encoding = UTF-8
+\documentclass{HUNNUthesis}
+\graphicspath{{figures/}}
+\begin{document}
+%=====封皮页需要自己填写的内容
+% 标题样式 使用 \title{{}}; 使用时必须保证至少两个外侧括号
+%  如：短标题 \title{{第一行}},
+%      长标题 \title{{第一行}{第二行}}
+%      超长标题\tiitle{{第一行}{...}{第N行}}
+\title{{湖南师范大学本科生毕业设计模板}}%中文标题
+% 标题样式 使用 \entitle{{}}; 使用时必须保证至少两个外侧括号
+%  如：短标题 \entitle{{First row}},
+%      长标题 \entitle{{First row}{ Second row}}
+%      超长标题\entitle{{First row}{...}{ Next N row}}
+% 注意：英文标题多行时,需要在开头加个空格,防止摘要标题处英语单词粘连。
+\entitle{{The Template of HUNNU Design}{for undergraduate}}%英文标题
+\author{Angus Zhang}%论文作者
+\major{重症医学专业}%专业、年级
+\advisor{李老师}%指导老师
+\college{工程与设计学院}%学院
+\serialnumber{182001010}%学号
+\code{080202}%专业代码
+\submityear{二〇}%提交年份二〇二〇就填二〇
+\submitmonth{二}%提交月份
+%%======生成封面（几乎不需要更改）
+\maketitle
+\frontmatter
+%======生成目录
+\tableofcontents
+%======插图索引和附表索引
+\renewcommand{\listfigurename}{插图索引}
+\renewcommand{\listtablename}{附表索引}
+\setcounter{lofdepth}{1}
+\newcommand{\loflabel}{图~}
+\renewcommand{\numberline}[1]{\songti\zihao{4}\loflabel~#1\hspace*{\baselineskip}}
+\addcontentsline{toc}{chapter}{插图索引}
+\listoffigures
+\newcommand{\lotlabel}{表~}
+\renewcommand{\numberline}[1]{\songti\zihao{4}\lotlabel~#1\hspace*{\baselineskip}}
+\addcontentsline{toc}{chapter}{附表索引}
+\listoftables
+%\include{chapter/abstract}%学校模板貌似把摘要和正文一起编页码了，所以这个部分挪到了后面
+%======文章主体
+\mainmatter
+\include{chapter/abstract}%如果中英文摘要和目录一起罗马数字编页码，请把部分移到\mainmatter前
+\include{chapter/chapter1}%各个章节内容单独分开撰写，方便编译和组织;
+\include{chapter/chapter2}
+\include{chapter/chapter3}
+\include{chapter/chapter4}
+\include{chapter/chapter5}
+%=======论文后部
+\backmatter
+%=======参考文献
+\bibdatabase{references/reference}%参考文献数据库
+\printbib
+\include{chapter/appendix}%附录
+\include{chapter/thanks}%致谢
+\end{document}
