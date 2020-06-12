@@ -63,10 +63,10 @@
 }
 \AtBeginDocument{\addtocontents{toc}{\protect\thispagestyle{frontmatterstyle}}}
 %=======修改章节样式
-\newcommand\prechaptername{第}
-\newcommand\postchaptername{章}
+%\newcommand\prechaptername{}
+%\newcommand\postchaptername{}
 %=======标题样式
-\CTEXsetup[name={第,章},number={\arabic{chapter}}]{chapter}%改变目录标题样式
+%\CTEXsetup[number={}]{chapter}%改变目录标题样式
 \renewcommand\cftchapdotsep{0.5}%虚线间隔
 \renewcommand{\cftchapafterpnum}{\vspace{6pt}}%章节间隔,节前6磅
 \renewcommand{\cftdot}{$\cdot$}
@@ -82,19 +82,26 @@
 \setlength\cftbeforetoctitleskip{24pt}
 \setlength\cftaftertoctitleskip{18pt}
 %%%%%%%%%% 章节字体、字号和间距设置 %%%%%%%%%%%%%%%%%
-\setcounter{secnumdepth}{4}
+%\setcounter{tocdepth}{1}
+\renewcommand\appendix{\setcounter{secnumdepth}{-2}}
+%\setcounter{secnumdepth}{-3}
 \setlength{\parindent}{2em}
-\renewcommand{\chaptername}{\prechaptername\arabic{chapter}\postchaptername}
-\titleformat{\chapter}{\centering\zihao{-2}\heiti}{\chaptername}{1em}{}
+\renewcommand{\chaptername}{}
+\renewcommand{\thesection}{\arabic{section}.}
+\renewcommand{\thesubsection}{\arabic{section}.\arabic{subsection}.}
+\renewcommand{\thesubsubsection}{\arabic{section}.\arabic{subsection}.\arabic{subsubsection}.}
+\titleformat{\chapter}{\centering\zihao{4}\heiti}{\chaptername}{0em}{}
 \titlespacing{\chapter}{0pt}{0pt}{18pt}
-\titleformat{\section}{\zihao{-3}\heiti}{\thesection}{1em}{}
+\titleformat{\section}{\bf\zihao{-4}\heiti}{\thesection}{0.5em}{}
 \titlespacing{\section}{0pt}{12pt}{12pt}
-\titleformat{\subsection}{\zihao{4}\heiti}{\thesubsection}{0.5em}{}
+\titleformat{\subsection}{\zihao{-4}\heiti}{\thesubsection}{0.5em}{}
 \titlespacing{\subsection}{0pt}{6pt}{6pt}
 \titleformat{\subsubsection}{\zihao{-4}\heiti}{\thesubsubsection}{0.5em}{}
 \titlespacing{\subsubsection}{0pt}{6pt}{6pt}
 %%=======标题页信息
-\newtoks\code%单位代码
+\newtoks\codeid%单位代码
+\newtoks\studentid%学生学号
+\newtoks\categoryid%分类号
 \newtoks\studytype%培养类型
 \newtoks\major%学科专业
 \newtoks\advisor%指导老师
@@ -112,11 +119,18 @@
     \cleardoublepage
     \thispagestyle{empty}
     \begin{center}
-    	\rightline{\WMU@label@code\WMUunderline[2.5cm]{\bf\heiti\zihao{4}\the\code}}%插入单位代码
+%    	\resizebox{\textwidth}{!}{
+	    	\begin{tabular}{llll}
+	    		{\bf\heiti\zihao{4}\WMU@label@categoryid \the\categoryid} & %插入分类号 
+	    		{\bf\heiti\zihao{4}\WMU@label@codeid} & {\bf\heiti\zihao{4}：} & {\bf\heiti\zihao{4} \the\codeid}\\ %插入单位代码
+	    		& 
+	    		{\bf\heiti\zihao{4}\WMU@label@studentid} & {\bf\heiti\zihao{4}：} & {\bf\heiti\zihao{4} \the\studentid}\\ %插入学号
+	    	\end{tabular}
+%    	}
     	\vspace{0.75cm}%设置垂直间距
         \includegraphics[width=12.43cm]{wmu.jpg}\\%插入温医大图标
          \vspace{0.25cm}%设置垂直间距
-        {\bf\heiti\zihao{-0}\WMU@label@thesis\\}%
+        {\bf\heiti\WMU@label@thesis\\}%
         \vspace{1.25cm}
         \zihao{4}
         \def\tabcolsep{6pt}
@@ -163,9 +177,11 @@
     \setlength{\parskip}{0pt}%行间距和段间距相等
     \vspace{10pt}
     \linespread{1.27}%行距20磅
-    \par \heiti\zihao{4}{摘~~~~要:}\fangsong\zihao{-4}#1
-    \vspace{10pt}
-    \par \heiti\zihao{4}{关键词：}\fangsong\zihao{-4}#2
+    \par \heiti\zihao{-4}{目~~~~的:}\songti\zihao{-4}
+    \par \heiti\zihao{-4}{方~~~~法:}\songti\zihao{-4}
+    \par \heiti\zihao{-4}{结~~~~果:}\songti\zihao{-4}
+    \par \heiti\zihao{-4}{结~~~~论:}\songti\zihao{-4}
+    \par \heiti\zihao{-4}{关键词：}\songti\zihao{-4}
     \newpage
 }
 %=======英文摘要页
@@ -186,9 +202,9 @@
     {
     \linespread{1.27}%行距24磅
     \vspace{11pt}
-    \par \fontspec{Times New Roman}\zihao{4}\textbf{Abstract: }\fontspec{Times New Roman}\zihao{-4} #1
+    \par \fontspec{Times New Roman}\zihao{-4}\textbf{Abstract: }\fontspec{Times New Roman}\zihao{-4} #1
     \vspace{10pt}
-    \par \fontspec{Times New Roman}\zihao{4}\textbf{Key Words: } \fontspec{Times New Roman}\zihao{-4} #2}
+    \par \fontspec{Times New Roman}\zihao{-4}\textbf{Key Words: } \fontspec{Times New Roman}\zihao{-4} #2}
 }
 %=======空格
 \newcommand\WMUspace{\phantom{永}}
@@ -217,7 +233,7 @@
 \crefformat{equation}{#2式(#1)#3}
 \crefformat{figure}{#2图#1#3}
 \crefformat{table}{#2表#1#3}
-\crefformat{chapter}{#2第#1章#3}
+%\crefformat{chapter}{#2第#1章#3}
 \crefformat{section}{#2#1节#3}
 \crefformat{subsection}{#2#1小节#3}
 \crefformat{subsubsection}{#2#1小节#3}
