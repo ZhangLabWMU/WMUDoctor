@@ -82,7 +82,7 @@
 \setlength\cftbeforetoctitleskip{24pt}
 \setlength\cftaftertoctitleskip{18pt}
 %%%%%%%%%% 章节字体、字号和间距设置 %%%%%%%%%%%%%%%%%
-%\setcounter{tocdepth}{1}
+\setcounter{tocdepth}{0}%目录只显示大标题
 \renewcommand\appendix{\setcounter{secnumdepth}{-2}}
 %\setcounter{secnumdepth}{-3}
 \setlength{\parindent}{2em}
