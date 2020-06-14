@@ -148,7 +148,7 @@
                 }%
             }%
         \end{tabular}
-    \begin{tabular}{cl}%标题右对齐，内容左对齐
+    \begin{tabular}{cl}%标题居中，内容左对齐
     	{\bf \WMU@label@author} &
     	{\heiti\zihao{3} \@author}\\[0.40cm]%作者信息
     	{\bf \WMU@label@major} &
@@ -174,9 +174,13 @@
     		}%
     	}%
     \end{tabular}
-	~\\[2.4cm]
+    ~\\[2.4cm]
+    % 主席及成员列表
 	\begin{tabular}{ll}
-		
+    	{\bf \WMU@label@chair} &
+    	{\heiti\zihao{3} \the\chair}\\[0.40cm]%主席
+    	{\bf \WMU@label@member} &
+    	{\heiti\zihao{3} \the\member}\\[0.40cm]%成员列表
 	\end{tabular}
     \clearpage
 }
