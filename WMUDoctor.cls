@@ -129,10 +129,9 @@
     			{\bf\heiti\zihao{4}\WMU@label@studentid}  & {\bf\heiti\zihao{4} \the\studentid}\\[0.40cm] %插入学号
     		\end{tabular}
     	\end{table}
-   			    	
     	\vspace{0.75cm}%设置垂直间距
         \includegraphics[width=12.43cm]{wmu.jpg}\\%插入温医大图标
-         \vspace{0.25cm}%设置垂直间距
+        \vspace{0.25cm}%设置垂直间距
         {\bf\heiti\WMU@label@thesis\\}%
         \vspace{1.25cm}
         \zihao{4}
@@ -145,7 +144,7 @@
             \forloop{title_str_number}{1}{\value{title_str_number}<6}{%整个循环不会超过6
                 \StrFindGroup{\@title}{\value{title_str_number}}[\mygroup]%
                 \IfStrEq{\mygroup}{}{}{%
-                    & {\StrFindGroup{\@title}{\value{title_str_number}}[\mygroup]\WMUunderline[258pt]{\bf \heiti\fontspec{Times New Roman}\zihao{3}\mygroup}}\\[0.40cm]%
+                    & {\StrFindGroup{\@title}{\value{title_str_number}}[\mygroup]\WMUunderline[325pt]{\bf \heiti\fontspec{Times New Roman}\zihao{3}\mygroup}}\\[0.40cm]%
                 }%
             }%
         \end{tabular}
@@ -161,12 +160,26 @@
     \end{tabular}
         \par
         \vspace{70pt}
-        {\bf\zihao{3}二〇 \the\submityear 年 \the\submitmonth 月}
+        {\bf\zihao{3}二〇 \the\submityear ~~年~~ \the\submitmonth ~~月}
     \end{center}
     \clearpage
+    %=======评委信息页
+    ~\\
+    \begin{tabular}{rl}%标题右对齐，内容左对齐
+    	\bf \songti \WMU@label@titleZh%中文标题折行输出
+    	\forloop{title_str_number}{1}{\value{title_str_number}<6}{%整个循环不会超过6
+    		\StrFindGroup{\@title}{\value{title_str_number}}[\mygroup]%
+    		\IfStrEq{\mygroup}{}{}{%
+    			& {\StrFindGroup{\@title}{\value{title_str_number}}[\mygroup]\WMUunderline[325pt]{\bf \heiti\fontspec{Times New Roman}\zihao{3}\mygroup}}\\[0.40cm]%
+    		}%
+    	}%
+    \end{tabular}
+	~\\[2.4cm]
+	\begin{tabular}{ll}
+		
+	\end{tabular}
+    \clearpage
 }
-
-
 
 
 
