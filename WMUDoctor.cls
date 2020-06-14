@@ -38,6 +38,7 @@
 \RequirePackage{algorithm}
 \RequirePackage{algorithmic}
 \RequirePackage{caption}
+\RequirePackage{ulem}
 \pagestyle{fancy}% Enables the custom headers/footers
 \fancypagestyle{frontmatterstyle}{
     \fancyhf{}
@@ -113,20 +114,22 @@
 %%=======标题页
 %需要添加循环函数，判定多于一行的情况
 \def\WMU@underline[#1]#2{%
-    \underline{\hbox to #1{\hfill#2\hfill}}}
+    \uline{\hbox to #1{\hfill#2\hfill}}}
 \def\WMUunderline{\@ifnextchar[\WMU@underline\underline}
 \renewcommand\maketitle{%封面样式
     \cleardoublepage
     \thispagestyle{empty}
     \begin{center}
-%    	\resizebox{\textwidth}{!}{
-	    	\begin{tabular}{llll}
-	    		{\bf\heiti\zihao{4}\WMU@label@categoryid \the\categoryid} & %插入分类号 
-	    		{\bf\heiti\zihao{4}\WMU@label@codeid} & {\bf\heiti\zihao{4}：} & {\bf\heiti\zihao{4} \the\codeid}\\ %插入单位代码
-	    		& 
-	    		{\bf\heiti\zihao{4}\WMU@label@studentid} & {\bf\heiti\zihao{4}：} & {\bf\heiti\zihao{4} \the\studentid}\\ %插入学号
-	    	\end{tabular}
-%    	}
+    	\begin{table}[!htbp]
+    		\centering
+    		\begin{tabular}{p{250pt}p{62pt}l}
+    			{\bf\heiti\zihao{4}\WMU@label@categoryid \the\categoryid} & %插入分类号 
+    			{\bf\heiti\zihao{4}\WMU@label@codeid} & {\bf\heiti\zihao{4} \the\codeid}\\[0.40cm] %插入单位代码
+    			& 
+    			{\bf\heiti\zihao{4}\WMU@label@studentid}  & {\bf\heiti\zihao{4} \the\studentid}\\[0.40cm] %插入学号
+    		\end{tabular}
+    	\end{table}
+   			    	
     	\vspace{0.75cm}%设置垂直间距
         \includegraphics[width=12.43cm]{wmu.jpg}\\%插入温医大图标
          \vspace{0.25cm}%设置垂直间距
@@ -146,15 +149,15 @@
                 }%
             }%
         \end{tabular}
-    \begin{tabular}{rl}%标题右对齐，内容左对齐
+    \begin{tabular}{cl}%标题右对齐，内容左对齐
     	{\bf \WMU@label@author} &
     	{\heiti\zihao{3} \@author}\\[0.40cm]%作者信息
     	{\bf \WMU@label@major} &
     	{\heiti\zihao{3} \the\major}\\[0.40cm]%学科专业
     	{\bf \WMU@label@studytype} &
-    	{\heiti\zihao{3} \the\studytype} \\[0.40cm]%培养类型
+    	{\heiti\zihao{3} \the\studytype}\\[0.40cm]%培养类型
     	{\bf \WMU@label@advisor} &
-    	{\heiti\zihao{3} \the\advisor} \\[0.40cm]%指导老师
+    	{\heiti\zihao{3} \the\advisor}\\[0.40cm]%指导老师
     \end{tabular}
         \par
         \vspace{70pt}
@@ -162,6 +165,11 @@
     \end{center}
     \clearpage
 }
+
+
+
+
+
 %=======中文摘要页
 \newcommand{\ZhAbstract}[2]{%
     \phantomsection
