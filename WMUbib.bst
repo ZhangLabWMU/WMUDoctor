@@ -16,7 +16,7 @@ FUNCTION{bst.file.email} { "anguszhang@outlook.com" }
 % 开始提示信息
 FUNCTION {banner.message}{
 is.print.banners.to.terminal
-{ "-- HUNNUThesis.bst version" " " * bst.file.version *
+{ "-- WMUbib.bst version" " " * bst.file.version *
 " (" * bst.file.date * ") " * "by Angus Zhang." *
 top$
 "-- " bst.file.email *

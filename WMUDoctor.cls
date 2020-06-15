@@ -33,6 +33,7 @@
 \RequirePackage{xstring}
 \RequirePackage[unicode,psdextra]{hyperref}%Required for hyperlinks
 \RequirePackage[nameinlink]{cleveref}
+% \RequirePackage{enumerate}
 \RequirePackage{enumitem}
 \RequirePackage[amsmath,thmmarks,hyperref]{ntheorem}
 \RequirePackage{algorithm}
@@ -79,6 +80,7 @@
 \renewcommand\cftchapfont{\heiti\zihao{4}}
 \renewcommand\cftsecfont{\songti\zihao{4}}
 \renewcommand\cftsubsecfont{\songti\zihao{4}}
+\renewcommand\cftsubsubsecfont{\songti\zihao{4}}
 \renewcommand\cftchappagefont{\mdseries}
 \setlength\cftbeforetoctitleskip{24pt}
 \setlength\cftaftertoctitleskip{18pt}
@@ -87,18 +89,20 @@
 \renewcommand\appendix{\setcounter{secnumdepth}{-2}}
 %\setcounter{secnumdepth}{-3}
 \setlength{\parindent}{2em}
+% 章节命名
 \renewcommand{\chaptername}{}
 \renewcommand{\thesection}{\arabic{section}.}
 \renewcommand{\thesubsection}{\arabic{section}.\arabic{subsection}.}
 \renewcommand{\thesubsubsection}{\arabic{section}.\arabic{subsection}.\arabic{subsubsection}.}
+% 章节段落设置
 \titleformat{\chapter}{\centering\zihao{4}\heiti}{\chaptername}{0em}{}
-\titlespacing{\chapter}{0pt}{0pt}{18pt}
+\titlespacing{\chapter}{0pt}{5pt}{5pt}
 \titleformat{\section}{\bf\zihao{-4}\heiti}{\thesection}{0.5em}{}
-\titlespacing{\section}{0pt}{12pt}{12pt}
-\titleformat{\subsection}{\zihao{-4}\heiti}{\thesubsection}{0.5em}{}
-\titlespacing{\subsection}{0pt}{6pt}{6pt}
-\titleformat{\subsubsection}{\zihao{-4}\heiti}{\thesubsubsection}{0.5em}{}
-\titlespacing{\subsubsection}{0pt}{6pt}{6pt}
+\titlespacing{\section}{0pt}{5pt}{5pt}
+\titleformat{\subsection}{\bf\zihao{-4}\heiti}{\thesubsection}{0.5em}{}
+\titlespacing{\subsection}{0pt}{5pt}{5pt}
+\titleformat{\subsubsection}{\bf\zihao{-4}\heiti}{\thesubsubsection}{0.5em}{}
+\titlespacing{\subsubsection}{0pt}{5pt}{5pt}
 %%=======标题页信息
 \newtoks\codeid%单位代码
 \newtoks\studentid%学生学号
@@ -109,6 +113,8 @@
 \newtoks\titlextra%标题多余一行时添加
 \newtoks\entitle%英文标题
 \newtoks\entitletra%标题多余一行时添加
+%\newtoks\chair%评委主席
+\newtoks\member%评审成员
 \newtoks\submityear%提交年份
 \newtoks\submitmonth%提交月份
 %%=======标题页
@@ -116,6 +122,9 @@
 \def\WMU@underline[#1]#2{%
     \uline{\hbox to #1{\hfill#2\hfill}}}
 \def\WMUunderline{\@ifnextchar[\WMU@underline\underline}
+\def\chair#1#2#3{#1\ \ #2\ \ #3}
+
+
 \renewcommand\maketitle{%封面样式
     \cleardoublepage
     \thispagestyle{empty}
@@ -174,24 +183,46 @@
     		}%
     	}%
     \end{tabular}
-    ~\\[2.4cm]
-    %=======评委信息页：主席及成员列表
-	\begin{tabular}{cl}
-    	\bf \songti \WMU@label@member%中文标题折行输出
-    	\forloop{title_str_number}{1}{\value{title_str_number}<6}{%整个循环不会超过6
-    		\StrFindGroup{\@title}{\value{title_str_number}}[\mygroup]%
-    		\IfStrEq{\mygroup}{}{}{%
-    			& {\StrFindGroup{\@title}{\value{title_str_number}}[\mygroup]\WMUunderline[325pt]{\bf \heiti\fontspec{Times New Roman}\zihao{3}\mygroup}}\\[0.40cm]%
-    		}%
-    	}%
-	\end{tabular}
+    % ~\\[10cm]
+    % %=======评委信息页：主席及成员列表
+    % \begin{tabular}{lll}
+    %     \bf \heiti \WMU@label@chair & 
+    %     %{\heiti\zihao{3} \WMUunderline[250pt]{\the\chair}}\\[0.40cm]%评审主席
+    %     {\heiti\zihao{3} \WMUunderline[250pt]{\the\chair} \\[0.40cm]
+
+
+
+
+    % 	%\bf \heiti \WMU@label@member %评审成员折行输出
+    % 	%\forloop{title_str_number}{1}{\value{title_str_number}<6}{%整个循环不会超过6
+    % 	%	\StrFindGroup{\the\member}{\value{title_str_number}}[\mygroup]%
+    % 	%	\IfStrEq{\mygroup}{}{}{%
+    % 	%		& {\StrFindGroup{\the\member}{\value{title_str_number}}[\mygroup]\WMUunderline[250pt]{\bf \heiti\fontspec{Times New Roman}\zihao{3}\mygroup}}\\[0.40cm]%
+    % 	%	}%
+    % 	%}%
+    % \end{tabular}
+    
+    % \newcommand{\member}[6]{
+    % \phantomsection
+    % %\thispagestyle{empty}
+    % \setlength{\parskip}{0pt}
+    % {
+    % \linespread{1.27}%行距24磅
+    % \vspace{11pt}
+    % \par \fontspec{Times New Roman}\zihao{-4}\textbf{Abstract: }\fontspec{Times New Roman}\zihao{-4} #1
+    % \vspace{10pt}
+    % \par \fontspec{Times New Roman}\zihao{-4}\textbf{Key Words: } \fontspec{Times New Roman}\zihao{-4} #2}
+% }
+
+
+
     \clearpage
 }
 
 
 
 %=======中文摘要页
-\newcommand{\ZhAbstract}[2]{%
+\newcommand{\ZhAbstract}[5]{%
     \phantomsection
     \addcontentsline{toc}{chapter}{中文摘要}
     \begin{center}%论文中文题目
@@ -203,17 +234,30 @@
         \end{minipage}
     \end{center}
     \setlength{\parskip}{0pt}%行间距和段间距相等
-    \vspace{10pt}
     \linespread{1.27}%行距20磅
-    \par \heiti\zihao{-4}{目~~~~的:}\songti\zihao{-4}
-    \par \heiti\zihao{-4}{方~~~~法:}\songti\zihao{-4}
-    \par \heiti\zihao{-4}{结~~~~果:}\songti\zihao{-4}
-    \par \heiti\zihao{-4}{结~~~~论:}\songti\zihao{-4}
-    \par \heiti\zihao{-4}{关键词：}\songti\zihao{-4}
+    \begin{center}
+        \heiti\zihao{3}\textbf{\makebox[4em][s]{摘\hspace{\fill}要}}
+    \end{center}
+    \vspace{10pt}
+    % 目的
+    \par \noindent\heiti\zihao{-4}{\makebox[4em][s]{目\hspace{\fill}的：}}
+    \par \songti\zihao{-4} #1
+    % 方法
+    \par \noindent\heiti\zihao{-4}{\makebox[4em][s]{方\hspace{\fill}法：}}
+    \par \songti\zihao{-4} #2
+    % 结果
+    \par \noindent\heiti\zihao{-4}{\makebox[4em][s]{结\hspace{\fill}果：}} 
+    \par \songti\zihao{-4} #3
+    % 结论
+    \par \noindent\heiti\zihao{-4}{\makebox[4em][s]{结\hspace{\fill}论：}}
+    \par \songti\zihao{-4} #4
+    % 关键词
+    \par \noindent\heiti\zihao{-4}{关键词：}
+    \par \songti\zihao{-4} #5
     \newpage
 }
 %=======英文摘要页
-\newcommand{\EnAbstract}[2]{
+\newcommand{\EnAbstract}[5]{
     \phantomsection
     \addcontentsline{toc}{chapter}{英文摘要}
     %\thispagestyle{empty}
@@ -228,11 +272,27 @@
     \end{center}%
     \setlength{\parskip}{0pt}
     {
-    \linespread{1.27}%行距24磅
-    \vspace{11pt}
-    \par \fontspec{Times New Roman}\zihao{-4}\textbf{Abstract: }\fontspec{Times New Roman}\zihao{-4} #1
+    \linespread{1.27}%行距20磅
+    \begin{center}
+        \fontspec{Times New Roman}\zihao{3}\textbf{Abstract}
+    \end{center}
     \vspace{10pt}
-    \par \fontspec{Times New Roman}\zihao{-4}\textbf{Key Words: } \fontspec{Times New Roman}\zihao{-4} #2}
+    % Objective
+    \par \noindent\fontspec{Times New Roman}\zihao{-4}\textbf{Objective: }
+    \par \fontspec{Times New Roman}\zihao{-4} #1
+    % Methods
+    \par \noindent\fontspec{Times New Roman}\zihao{-4}\textbf{Methods: } 
+    \par \fontspec{Times New Roman}\zihao{-4} #2
+    % Results
+    \par \noindent\fontspec{Times New Roman}\zihao{-4}\textbf{Results: } 
+    \par \fontspec{Times New Roman}\zihao{-4} #3
+    % Conclusions
+    \par \noindent\fontspec{Times New Roman}\zihao{-4}\textbf{Conclusions: } 
+    \par \fontspec{Times New Roman}\zihao{-4} #4
+    % Keywords
+    \par \noindent\fontspec{Times New Roman}\zihao{-4}\textbf{Key Words: } 
+    \par \fontspec{Times New Roman}\zihao{-4} #5    
+    }
 }
 %=======空格
 \newcommand\WMUspace{\phantom{永}}
@@ -255,7 +315,7 @@
     \hypersetup{
         pdftitle = {\@title},
         pdfauthor = {\@author},
-        pdfsubject = {湖南师范大学本科毕业论文}
+        pdfsubject = {温州医科大学博士研究生毕业论文}
     }
 }
 \crefformat{equation}{#2式(#1)#3}
@@ -266,9 +326,22 @@
 \crefformat{subsection}{#2#1小节#3}
 \crefformat{subsubsection}{#2#1小节#3}
 %=====列表样式
-\setenumerate[1]{itemsep=0pt,partopsep=0pt,parsep=\parskip,topsep=5pt}
+\setenumerate[1]{itemsep=0pt,partopsep=0pt,parsep=\parskip,topsep=0pt}
 \setitemize[1]{itemsep=0pt,partopsep=0pt,parsep=\parskip,topsep=0pt}
 \setdescription{itemsep=0pt,partopsep=0pt,parsep=\parskip,topsep=5pt}
+%=====表格样式
+% toprule/bottomerule
+\setlength\heavyrulewidth{1.5pt}
+% midrule
+\setlength\lightrulewidth{0.75pt}
+
+
+
+
+
+
+
+
 %======英文名称改为汉字
 \theorembodyfont{\rmfamily\songti}
 \theoremheaderfont{\rmfamily\heiti}
@@ -322,4 +395,4 @@
 }
 \endinput
 %%
-%% End of file `WMUthesis.cls'.
+%% End of file `WMUDoctor.cls'.
