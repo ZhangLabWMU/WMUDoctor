@@ -3,7 +3,7 @@
 \LoadClass[a4paper,UTF8,openany,oneside]{ctexbook}
 \AtEndOfPackage{\input{WMU.cfg}}%很关键配置文件
 %%=======论文页边距一般要求：上边距2.54cm、下边距2.54cm,左右边距3.00cm,页眉1.50cm,页脚1.75cm
-\RequirePackage[top=2.54cm, bottom=2.54cm, outer=3.00cm, inner=3.00cm, headheight=1.5 cm, footskip=1.75cm, heightrounded]{geometry}
+\RequirePackage[top=2.54cm, bottom=2.54cm, outer=3.00cm, inner=3.00cm, headheight=1.5cm, footskip=1.75cm, heightrounded]{geometry}
 %======连续参考文献连接起来
 \RequirePackage[numbers,sort&compress]{natbib}
 %=======参考文献上标
@@ -75,8 +75,8 @@
 \renewcommand{\cftdotsep}{1.5}
 \renewcommand{\cftchapleader}{\cftdotfill{\cftchapdotsep}}
 \renewcommand{\cftchapdotsep}{\cftdotsep}
-\setlength{\cftbeforesecskip}{6pt}%章节间隔,节前6磅
-\setlength{\cftbeforesubsecskip}{6pt}%章节间隔,小节节前6磅
+% \setlength{\cftbeforesecskip}{6pt}%章节间隔,节前6磅
+% \setlength{\cftbeforesubsecskip}{6pt}%章节间隔,小节节前6磅
 \renewcommand\cftchapfont{\heiti\zihao{4}}
 \renewcommand\cftsecfont{\songti\zihao{4}}
 \renewcommand\cftsubsecfont{\songti\zihao{4}}
@@ -85,24 +85,34 @@
 \setlength\cftbeforetoctitleskip{24pt}
 \setlength\cftaftertoctitleskip{18pt}
 %%%%%%%%%% 章节字体、字号和间距设置 %%%%%%%%%%%%%%%%%
-\setcounter{tocdepth}{0}%目录只显示大标题
-\renewcommand\appendix{\setcounter{secnumdepth}{-2}}
-%\setcounter{secnumdepth}{-3}
-\setlength{\parindent}{2em}
-% 章节命名
+\setcounter{tocdepth}{0}%目录只显示chapter
+\renewcommand\appendix{\setcounter{secnumdepth}{-2}}%编号从section开始
+\setlength{\parindent}{2em}%默认缩进2个字符
+%%=======章节命名
+
+    % chapter前不添加信息
 \renewcommand{\chaptername}{}
+    % section格式：1. 2. 3.
 \renewcommand{\thesection}{\arabic{section}.}
+    % subsection格式：1.1. 1.2. 1.3.
 \renewcommand{\thesubsection}{\arabic{section}.\arabic{subsection}.}
+    % subsubsection格式：1.1.1. 1.1.2. 1.1.3.
 \renewcommand{\thesubsubsection}{\arabic{section}.\arabic{subsection}.\arabic{subsubsection}.}
-% 章节段落设置
-\titleformat{\chapter}{\centering\zihao{4}\heiti}{\chaptername}{0em}{}
+%%=======章节段落设置
+    % chapter：黑体，4号字
+\titleformat{\chapter}{\centering\zihao{4}\heiti}{\chaptername}{0em}{}%
 \titlespacing{\chapter}{0pt}{5pt}{5pt}
+    % section：黑体，小4号字
 \titleformat{\section}{\bf\zihao{-4}\heiti}{\thesection}{0.5em}{}
 \titlespacing{\section}{0pt}{5pt}{5pt}
+    % subsection：黑体，小4号字
 \titleformat{\subsection}{\bf\zihao{-4}\heiti}{\thesubsection}{0.5em}{}
 \titlespacing{\subsection}{0pt}{5pt}{5pt}
+    % subsubsection：黑体，小4号字
 \titleformat{\subsubsection}{\bf\zihao{-4}\heiti}{\thesubsubsection}{0.5em}{}
 \titlespacing{\subsubsection}{0pt}{5pt}{5pt}
+
+
 %%=======标题页信息
 \newtoks\codeid%单位代码
 \newtoks\studentid%学生学号
@@ -128,6 +138,7 @@
 \renewcommand\maketitle{%封面样式
     \cleardoublepage
     \thispagestyle{empty}
+    % 第1页：基本情况
     \begin{center}
     	\begin{table}[!htbp]
     		\centering
@@ -135,7 +146,7 @@
     			{\bf\heiti\zihao{4}\WMU@label@categoryid \the\categoryid} & %插入分类号 
     			{\bf\heiti\zihao{4}\WMU@label@codeid} & {\bf\heiti\zihao{4} \the\codeid}\\[0.40cm] %插入单位代码
     			& 
-    			{\bf\heiti\zihao{4}\WMU@label@studentid}  & {\bf\heiti\zihao{4} \the\studentid}\\[0.40cm] %插入学号
+    			{\bf\heiti\zihao{4}\WMU@label@studentid} & {\bf\heiti\zihao{4} \the\studentid}\\[0.40cm] %插入学号
     		\end{tabular}
     	\end{table}
     	\vspace{0.75cm}%设置垂直间距
@@ -157,18 +168,19 @@
                 }%
             }%
         \end{tabular}
-    \begin{tabular}{cl}%标题居中，内容左对齐
-    	{\bf \WMU@label@author} &
-    	{\heiti\zihao{3} \@author}\\[0.40cm]%作者信息
-    	{\bf \WMU@label@major} &
-    	{\heiti\zihao{3} \the\major}\\[0.40cm]%学科专业
-    	{\bf \WMU@label@studytype} &
-    	{\heiti\zihao{3} \the\studytype}\\[0.40cm]%培养类型
-    	{\bf \WMU@label@advisor} &
-    	{\heiti\zihao{3} \the\advisor}\\[0.40cm]%指导老师
-    \end{tabular}
+        \begin{tabular}{cl}%标题居中，内容左对齐
+            {\bf \WMU@label@author} &
+            {\heiti\zihao{3} \@author}\\[0.40cm]%作者信息
+            {\bf \WMU@label@major} &
+            {\heiti\zihao{3} \the\major}\\[0.40cm]%学科专业
+            {\bf \WMU@label@studytype} &
+            {\heiti\zihao{3} \the\studytype}\\[0.40cm]%培养类型
+            {\bf \WMU@label@advisor} &
+            {\heiti\zihao{3} \the\advisor}\\[0.40cm]%指导老师
+        \end{tabular}
         \par
         \vspace{70pt}
+        % 答辩日期
         {\bf\zihao{3}二〇 \the\submityear ~~年~~ \the\submitmonth ~~月}
     \end{center}
     \clearpage
@@ -184,38 +196,6 @@
     	}%
     \end{tabular}
     % ~\\[10cm]
-    % %=======评委信息页：主席及成员列表
-    % \begin{tabular}{lll}
-    %     \bf \heiti \WMU@label@chair & 
-    %     %{\heiti\zihao{3} \WMUunderline[250pt]{\the\chair}}\\[0.40cm]%评审主席
-    %     {\heiti\zihao{3} \WMUunderline[250pt]{\the\chair} \\[0.40cm]
-
-
-
-
-    % 	%\bf \heiti \WMU@label@member %评审成员折行输出
-    % 	%\forloop{title_str_number}{1}{\value{title_str_number}<6}{%整个循环不会超过6
-    % 	%	\StrFindGroup{\the\member}{\value{title_str_number}}[\mygroup]%
-    % 	%	\IfStrEq{\mygroup}{}{}{%
-    % 	%		& {\StrFindGroup{\the\member}{\value{title_str_number}}[\mygroup]\WMUunderline[250pt]{\bf \heiti\fontspec{Times New Roman}\zihao{3}\mygroup}}\\[0.40cm]%
-    % 	%	}%
-    % 	%}%
-    % \end{tabular}
-    
-    % \newcommand{\member}[6]{
-    % \phantomsection
-    % %\thispagestyle{empty}
-    % \setlength{\parskip}{0pt}
-    % {
-    % \linespread{1.27}%行距24磅
-    % \vspace{11pt}
-    % \par \fontspec{Times New Roman}\zihao{-4}\textbf{Abstract: }\fontspec{Times New Roman}\zihao{-4} #1
-    % \vspace{10pt}
-    % \par \fontspec{Times New Roman}\zihao{-4}\textbf{Key Words: } \fontspec{Times New Roman}\zihao{-4} #2}
-% }
-
-
-
     \clearpage
 }
 
@@ -296,18 +276,73 @@
 }
 %=======空格
 \newcommand\WMUspace{\phantom{永}}
-%=======附录页和感谢页
+%=======前言页
+\newcommand{\Preface}{
+    \setcounter{section}{0}
+    \renewcommand{\thechapter}{A}%
+	\addcontentsline{toc}{chapter}{前\qquad 言}
+    \chapter*{前\WMUspace\WMUspace言}
+    \zihao{-4}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+%=======方法页
+% \newcommand{\Method}{
+%     \setcounter{section}{0}
+%     \renewcommand{\thechapter}{A}%
+% 	\addcontentsline{toc}{chapter}{材料与方法}
+%     \chapter*{材料与方法}
+%     \zihao{-4}
+% }
+% %=======结果页
+% \newcommand{\Result}{
+%     \setcounter{section}{0}
+%     \renewcommand{\thechapter}{A}%
+% 	\addcontentsline{toc}{chapter}{结\qquad 果}
+%     \chapter*{结\WMUspace\WMUspace果}
+%     \zihao{-4}
+% }
+
+% %=======分析与讨论页
+% \newcommand{\Discussion}{
+%     \setcounter{section}{0}
+%     \renewcommand{\thechapter}{A}%
+% 	\addcontentsline{toc}{chapter}{分析与讨论}
+%     \chapter*{分析与讨论}
+%     \zihao{-4}
+% }
+% %=======小结页
+% \newcommand{\Summary}{
+%     \setcounter{section}{0}
+%     \renewcommand{\thechapter}{A}%
+% 	\addcontentsline{toc}{chapter}{小\qquad 结}
+%     \chapter*{小\WMUspace\WMUspace结}
+%     \zihao{-4}
+% }
+%=======附录页
 \newcommand{\Appendix}{%将附录添加到目录中
     \setcounter{section}{0}
     \renewcommand{\thechapter}{A}%
-	\addcontentsline{toc}{chapter}{附\qquad 录}
+	\addcontentsline{toc}{chapter}{附~~~~录}
     \chapter*{附\WMUspace\WMUspace 录}
-    \zihao{5}
+    \zihao{-4}
 }
+%=======感谢页
 \newcommand{\Thanks}{%将致谢添加到目录中
-	\addcontentsline{toc}{chapter}{致\qquad 谢}
+	\addcontentsline{toc}{chapter}{致~~~~谢}
     \chapter*{致\WMUspace\WMUspace 谢}
-    \zihao{-4}\fangsong
+    \zihao{-4}\songti
 }
 %========超链接
 \hypersetup{hidelinks,breaklinks=true,bookmarksopen=false}%自动写入pdf信息
@@ -334,13 +369,6 @@
 \setlength\heavyrulewidth{1.5pt}
 % midrule
 \setlength\lightrulewidth{0.75pt}
-
-
-
-
-
-
-
 
 %======英文名称改为汉字
 \theorembodyfont{\rmfamily\songti}
