@@ -43,17 +43,17 @@
     %\include{chapter/abstract}%学校模板貌似把摘要和正文一起编页码了，所以这个部分挪到了后面
     %======文章主体
     \mainmatter                                                                                                                                                                                                                                                      
-    \include{chapter/abstract}%如果中英文摘要和目录一起罗马数字编页码，请把部分移到\mainmatter前
-    \include{chapter/preface}%各个章节内容单独分开撰写，方便编译和组织;
+    % \include{chapter/abstract}%如果中英文摘要和目录一起罗马数字编页码，请把部分移到\mainmatter前
+    % \include{chapter/preface}%各个章节内容单独分开撰写，方便编译和组织;
     \include{chapter/method}
     \include{chapter/result}
     \include{chapter/discussion}
     \include{chapter/summary}
-    %=======论文后部
-    \backmatter
-    %=======参考文献1
-    % \bibdatabase{references/reference}%参考文献数据库
-    \printbib
+    % %=======论文后部
+    % \backmatter
+    % %=======参考文献1
+    % % \bibdatabase{references/reference}%参考文献数据库
+    % \printbib
     \include{chapter/appendix}%附录
     \include{chapter/thanks}%致谢
 \end{document}

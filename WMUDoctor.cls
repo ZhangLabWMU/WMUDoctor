@@ -11,7 +11,7 @@
 %========尾注
 \RequirePackage[perpage, bottom]{footmisc}
 %========常用宏包
-
+% \RequirePackage[slantfont,boldfont]{xeCJK}
 \RequirePackage{amsmath,amsfonts,amssymb}
 \RequirePackage{graphicx}
 \RequirePackage{subfigure}
@@ -66,25 +66,14 @@
 }
 \AtBeginDocument{\addtocontents{toc}{\protect\thispagestyle{frontmatterstyle}}}
 %=======设置全局字体
-\setCJKmainfont[AutoFakeBold=2, ItalicFont={simsun.ttc}]{simsun.ttc}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    % 设置宋体为默认CJK字体，因宋体本身不包括粗体和斜体，需同时添加宋体的自动添加伪粗体及伪斜体设置
+\setCJKmainfont[AutoFakeBold=2, AutoFakeSlant=0.2]{simsun.ttc}
+    % 设置全局非CJK字体为Time New Roman
+\setmainfont[BoldFont={timesbd.ttf},ItalicFont={timesi.ttf}, BoldItalicFont={timesbi.ttf}]{times.ttf}
+    % 修改黑体/楷体/仿宋
+\renewcommand{\heiti}{\CJKfontspec[AutoFakeBold=2, AutoFakeSlant=0.2]{simhei.ttf}}
+\renewcommand{\kaishu}{\CJKfontspec[AutoFakeBold=2, AutoFakeSlant=0.2]{simkai.ttf}}
+\renewcommand{\fangsong}{\CJKfontspec[AutoFakeBold=2, AutoFakeSlant=0.2]{simfang.ttf}}
 
 %=======修改章节样式
 %\newcommand\prechaptername{}
@@ -111,7 +100,6 @@
 \renewcommand\appendix{\setcounter{secnumdepth}{-2}}%编号从section开始
 \setlength{\parindent}{2em}%默认缩进2个字符
 %%=======章节命名
-
     % chapter前不添加信息
 \renewcommand{\chaptername}{}
     % section格式：1. 2. 3.
@@ -186,19 +174,19 @@
             \forloop{title_str_number}{1}{\value{title_str_number}<6}{%整个循环不会超过6
                 \StrFindGroup{\@title}{\value{title_str_number}}[\mygroup]%
                 \IfStrEq{\mygroup}{}{}{%
-                    & {\StrFindGroup{\@title}{\value{title_str_number}}[\mygroup]\WMUunderline[325pt]{\bf \heiti\fontspec{Times New Roman}\zihao{3}\mygroup}}\\[0.40cm]%
+                    & {\StrFindGroup{\@title}{\value{title_str_number}}[\mygroup]\WMUunderline[325pt]{\songti\fontspec{Times New Roman}\zihao{3}\bf\mygroup}}\\[0.40cm]%
                 }%
             }%
         \end{tabular}
         \begin{tabular}{cl}%标题居中，内容左对齐
             {\bf \WMU@label@author} &
-            {\heiti\zihao{3} \@author}\\[0.40cm]%作者信息
+            {\songti\zihao{3} \@author}\\[0.40cm]%作者信息
             {\bf \WMU@label@major} &
-            {\heiti\zihao{3} \the\major}\\[0.40cm]%学科专业
+            {\songti\zihao{3} \the\major}\\[0.40cm]%学科专业
             {\bf \WMU@label@studytype} &
-            {\heiti\zihao{3} \the\studytype}\\[0.40cm]%培养类型
+            {\songti\zihao{3} \the\studytype}\\[0.40cm]%培养类型
             {\bf \WMU@label@advisor} &
-            {\heiti\zihao{3} \the\advisor}\\[0.40cm]%指导老师
+            {\songti\zihao{3} \the\advisor}\\[0.40cm]%指导老师
         \end{tabular}
         \par
         \vspace{70pt}
@@ -213,7 +201,7 @@
     	\forloop{title_str_number}{1}{\value{title_str_number}<6}{%整个循环不会超过6
     		\StrFindGroup{\@title}{\value{title_str_number}}[\mygroup]%
     		\IfStrEq{\mygroup}{}{}{%
-    			& {\StrFindGroup{\@title}{\value{title_str_number}}[\mygroup]\WMUunderline[325pt]{\bf \heiti\fontspec{Times New Roman}\zihao{3}\mygroup}}\\[0.40cm]%
+    			& {\StrFindGroup{\@title}{\value{title_str_number}}[\mygroup]\WMUunderline[325pt]{\songti\fontspec{Times New Roman}\zihao{3}\bf\mygroup}}\\[0.40cm]%
     		}%
     	}%
     \end{tabular}
