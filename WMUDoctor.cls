@@ -11,6 +11,7 @@
 %========尾注
 \RequirePackage[perpage, bottom]{footmisc}
 %========常用宏包
+
 \RequirePackage{amsmath,amsfonts,amssymb}
 \RequirePackage{graphicx}
 \RequirePackage{subfigure}
@@ -64,24 +65,45 @@
     \thispagestyle{mainmatterstyle}
 }
 \AtBeginDocument{\addtocontents{toc}{\protect\thispagestyle{frontmatterstyle}}}
+%=======设置全局字体
+\setCJKmainfont[AutoFakeBold=2, ItalicFont={simsun.ttc}]{simsun.ttc}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 %=======修改章节样式
 %\newcommand\prechaptername{}
 %\newcommand\postchaptername{}
 %=======标题样式
 %\CTEXsetup[number={}]{chapter}%改变目录标题样式
 \renewcommand\cftchapdotsep{0.5}%虚线间隔
-\renewcommand{\cftchapafterpnum}{\vspace{6pt}}%章节间隔,节前6磅
+\renewcommand{\cftchapafterpnum}{\vspace{0pt}}%章节间隔,节前6磅
 \renewcommand{\cftdot}{$\cdot$}
 \renewcommand{\cftdotsep}{1.5}
 \renewcommand{\cftchapleader}{\cftdotfill{\cftchapdotsep}}
 \renewcommand{\cftchapdotsep}{\cftdotsep}
 % \setlength{\cftbeforesecskip}{6pt}%章节间隔,节前6磅
 % \setlength{\cftbeforesubsecskip}{6pt}%章节间隔,小节节前6磅
-\renewcommand\cftchapfont{\heiti\zihao{4}}
+\renewcommand\cftchapfont{\kaishu\zihao{4}}
 \renewcommand\cftsecfont{\songti\zihao{4}}
 \renewcommand\cftsubsecfont{\songti\zihao{4}}
 \renewcommand\cftsubsubsecfont{\songti\zihao{4}}
-\renewcommand\cftchappagefont{\mdseries}
+\renewcommand\cftchappagefont{\mdseries\zihao{4}}
 \setlength\cftbeforetoctitleskip{24pt}
 \setlength\cftaftertoctitleskip{18pt}
 %%%%%%%%%% 章节字体、字号和间距设置 %%%%%%%%%%%%%%%%%
@@ -201,6 +223,10 @@
 
 
 
+
+
+
+
 %=======中文摘要页
 \newcommand{\ZhAbstract}[5]{%
     \phantomsection
@@ -277,66 +303,47 @@
 %=======空格
 \newcommand\WMUspace{\phantom{永}}
 %=======前言页
-\newcommand{\Preface}{
-    \setcounter{section}{0}
-    \renewcommand{\thechapter}{A}%
-	\addcontentsline{toc}{chapter}{前\qquad 言}
-    \chapter*{前\WMUspace\WMUspace言}
-    \zihao{-4}
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-%=======方法页
+% \newcommand{\Preface}{
+	
+% 	\setcounter{section}{0}
+% 	\renewcommand{\thechapter}{A}%
+	
+% 	\addcontentsline{toc}{chapter}{前~~~~言}
+%     \chapter*{前\WMUspace\WMUspace言}
+%     \zihao{-4}\songti
+% }
+% %=======方法页
 % \newcommand{\Method}{
-%     \setcounter{section}{0}
-%     \renewcommand{\thechapter}{A}%
 % 	\addcontentsline{toc}{chapter}{材料与方法}
 %     \chapter*{材料与方法}
-%     \zihao{-4}
+%     \zihao{-4}\songti
 % }
 % %=======结果页
 % \newcommand{\Result}{
-%     \setcounter{section}{0}
-%     \renewcommand{\thechapter}{A}%
-% 	\addcontentsline{toc}{chapter}{结\qquad 果}
+% 	\addcontentsline{toc}{chapter}{结~~~~果}
 %     \chapter*{结\WMUspace\WMUspace果}
-%     \zihao{-4}
+%     \zihao{-4}\songti
 % }
 
 % %=======分析与讨论页
 % \newcommand{\Discussion}{
-%     \setcounter{section}{0}
-%     \renewcommand{\thechapter}{A}%
 % 	\addcontentsline{toc}{chapter}{分析与讨论}
 %     \chapter*{分析与讨论}
-%     \zihao{-4}
+%     \zihao{-4}\songti
 % }
 % %=======小结页
 % \newcommand{\Summary}{
-%     \setcounter{section}{0}
-%     \renewcommand{\thechapter}{A}%
-% 	\addcontentsline{toc}{chapter}{小\qquad 结}
+% 	\addcontentsline{toc}{chapter}{小~~~~结}
 %     \chapter*{小\WMUspace\WMUspace结}
-%     \zihao{-4}
+%     \zihao{-4}\songti
 % }
 %=======附录页
 \newcommand{\Appendix}{%将附录添加到目录中
-    \setcounter{section}{0}
-    \renewcommand{\thechapter}{A}%
+   \setcounter{section}{0}
+   \renewcommand{\thechapter}{A}%
 	\addcontentsline{toc}{chapter}{附~~~~录}
     \chapter*{附\WMUspace\WMUspace 录}
-    \zihao{-4}
+    \zihao{-4}\songti
 }
 %=======感谢页
 \newcommand{\Thanks}{%将致谢添加到目录中
@@ -407,9 +414,9 @@
 \captionsetup[figure]{labelsep=space}
 \renewcommand{\tablename}{表} %表题头
 \renewcommand{\figurename}{图} %图题头
-\renewcommand{\thefigure}{\arabic{chapter}.\arabic{figure}} %使图编号为7.1的格式 %\protect{~}
-\renewcommand{\thetable}{\arabic{chapter}.\arabic{table}}%使表编号为7.1的格式
-\renewcommand{\theequation}{\arabic{chapter}.\arabic{equation}}%使公式编号为7.1的格式
+\renewcommand{\thefigure}{\arabic{figure}：} %使图编号为1的格式 %\protect{~}
+\renewcommand{\thetable}{\arabic{table}：}%使表编号为1的格式
+\renewcommand{\theequation}{\arabic{equation}}%使公式编号为1的格式
 \renewcommand{\thesubfigure}{(\alph{subfigure})}%使子图编号为(a)的格式
 \renewcommand{\thesubtable}{(\alph{subtable})} %使子表编号为(a)的格式
 %%=======参考文献

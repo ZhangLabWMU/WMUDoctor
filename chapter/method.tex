@@ -1,9 +1,10 @@
 % !TEX encoding = UTF-8
 \chapter{材料与方法}
+% \Method
 
 正确编译需要以下几个部分(这是一个列表环境）：
 \begin{itemize}
-    \item 一个基本的TEX发行版
+    \item 一个基本的\TeX{}发行版
     \item CJK或XeCJK（供\LaTeX{}）宏包
     \item ctex宏包（提供ctexbook文档).
     \item 中文字体
@@ -86,6 +87,7 @@
     \includegraphics[width=0.8\textwidth]{f1.jpg}%图片名称，放在/figures目录下
     \caption{图片插入\label{fig:fig}}
 \end{figure}
+
 具体代码：
 \begin{verbatim}
 %抄写环境
@@ -207,6 +209,15 @@ WMUDoctor依赖于以下宏包，这些宏包在常见的\LaTeX{}发行版中都
 \end{verbatim}
 {\songti 宋体} {\heiti 黑体}    {\fangsong 仿宋}     {\kaishu 楷书}
 \subsubsection{字号}%
+
+\subsubsection{字形}
+\textbf{粗体FONT} 
+\textit{意大利斜体FONT}
+\textsl{Slanted斜体FONT}
+\textsc{显示小体大写文本FONT}
+\textmd{中等权重FONT}
+\textup{直立FONT}
+
 \begin{center}
 	\begin{tabular}{cccccccc}
 		\toprule
