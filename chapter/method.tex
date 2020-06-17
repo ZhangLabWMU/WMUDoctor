@@ -15,18 +15,21 @@
 \subsection{模板文件结构\label{sec:files}}
 整个模板根目录的文件列表如下：
 \begin{center}
-    \begin{tabular}{llc}
-        \toprule
-        文件                     & 说明                   & 备注                 \\
-        \midrule
-        WMUDoctor.cls            & WMUDoctor宏包          & \textcolor{red}{{*}} \\
-        WMU.cfg                  & WMU宏包配置文件        & \textcolor{red}{{*}} \\
-        WMUbib.bst               & 引文样式文件           & \textcolor{red}{{*}} \\
-        references/reference.bib & bib数据库              & \textcolor{red}{{*}} \\
-        figures/wmu.jpg          & 温州医科大学校名标准字 & \textcolor{red}{{*}} \\
-        WMUBachelorTemplate.tex  & \TeX{}样例文件         & \textcolor{red}{{*}} \\
-        \bottomrule
-    \end{tabular}
+    \begin{table}
+        \setlength{\tabcolsep}{10mm}{
+            \begin{tabularx}{15cm}{llc}
+                \toprule
+                文件                     & 说明                   & 备注                 \\
+                \midrule
+                WMUDoctor.cls            & WMUDoctor宏包          & \textcolor{red}{{*}} \\
+                WMU.cfg                  & WMU宏包配置文件        & \textcolor{red}{{*}} \\
+                WMUbib.bst               & 引文样式文件           & \textcolor{red}{{*}} \\
+                references/reference.bib & bib数据库              & \textcolor{red}{{*}} \\
+                figures/wmu.jpg          & 温州医科大学校名标准字 & \textcolor{red}{{*}} \\
+                WMUBachelorTemplate.tex  & \TeX{}样例文件         & \textcolor{red}{{*}} \\
+                \bottomrule
+            \end{tabularx}}
+    \end{table}
 \end{center}
 注： \textcolor{red}{{*}} 表示\LaTeX{}模板必须的文件。
 \subsection{示例}
@@ -52,14 +55,15 @@
 \begin{table}[H]
     \begin{center}
         \caption{希腊字母表\label{tab:Greek}}
-        \begin{tabular}{ccccc}
+        \setlength{\tabcolsep}{10mm}{
+        \begin{tabularx}{15cm}{ccccc}
             \toprule[1.5pt]
             Alpha    & Beta    & Gamma    & Delta    & Theta    \\
             \midrule[0.75pt]
             $\alpha$ & $\beta$ & $\gamma$ & $\delta$ & $\theta$ \\
             $A$      & $B$     & $\Gamma$ & $\Delta$ & $\Theta$ \\
             \bottomrule[1.5pt]
-        \end{tabular}
+        \end{tabularx}}
     \end{center}
 \end{table}
 这是对表\ref{tab:Greek}的引用
@@ -67,15 +71,16 @@
 \begin{table}[htbp]
     \caption{不同电力系统频率测量算法时间复杂度比较}\label{table2:1}
     \vspace{0.5em}\centering\zihao{5}
-    \begin{tabular}{cccc}
-        \toprule[1.5pt]
+    \setlength{\tabcolsep}{4mm}{
+    \begin{tabularx}{15cm}{cccc}
+        \toprule
         算法     & 加法                  & 乘法                      & 时间复杂度    \\
-        \midrule[0.75pt]
+        \midrule
         TQDS     & $QN^2+QN/2+Q+1$       & $QN^2$                    & $O(N^2)$      \\
         WIFFT    & $(QN+1)\log_2(QN+1)$  & $(QN+1)*(1+\log_2(QN+1))$ & $O(N\log_2N)$ \\
         本章算法 & $3(QN+1)\log_2(QN+1)$ & $(QN+1)(1+3\log_2(QN+1))$ & $O(N\log_2N)$ \\
-        \bottomrule[1.5pt]
-    \end{tabular}
+        \bottomrule
+    \end{tabularx}}
     \vspace{\baselineskip}
 \end{table}
 
@@ -163,26 +168,21 @@ return 0;
 WMUDoctor依赖于以下宏包，这些宏包在常见的\LaTeX{}发行版中都包括，在安装使用之前，请确定你的\TeX{}发行版中都已正常安装这些宏包
 \begin{table}[H]
     \centering
-    \begin{tabular}{cccc}
+    \setlength{\tabcolsep}{11mm}{
+    \begin{tabularx}{15cm}{cccc}
         \toprule
         \multicolumn{4}{c}{依赖宏包} \\
         \midrule
         {footmisc}    & {amsmath}  & {amsfonts} & {amssymb}   \\
-        
         {graphicx}    & {svgnames} & {xcolor}   & {mathptmx}  \\
-
         {float}       & {fontenc}  & {fancyhdr} & {lastpage}  \\
-
         {etoolbox}    & {fancy}    & {caption}  & {array}     \\
-
         {makecell}    & {forloop}  & {xstring}  & {hyperref}  \\
-
         {tabularx}    & {enumitem} & {ntheorem} & {algorithm} \\
-
         {algorithmic} & {bibentry} & {xeCJK}    & {CJK}       \\
         {listings}    & {courier}  & {}         & {}          \\
         \bottomrule
-    \end{tabular}
+    \end{tabularx}}
 \end{table}
 如果你尚未安装这些宏包，可以启动你的 \TeX{} 发行版的宏包管理器
 来安装；或者到 \url{http://www.ctan.org} 上搜索下载并安装。
@@ -217,7 +217,8 @@ WMUDoctor依赖于以下宏包，这些宏包在常见的\LaTeX{}发行版中都
 
 \subsection{字号}%
 \begin{center}
-	\begin{tabular}{cccccccc}
+    \setlength{\tabcolsep}{5.5mm}{
+	\begin{tabularx}{15cm}{cccccccc}
 		\toprule
 		初号 & 小初 & 一号 & 小一 & 二号 & 小二 & 三号 & 小三 \\
 		0 & -0 & 1 & -1 & 2 & -2 & 3 & -3 \\
@@ -225,9 +226,28 @@ WMUDoctor依赖于以下宏包，这些宏包在常见的\LaTeX{}发行版中都
 		四号 & 小四 & 五号 & 小五 & 六号 & 小六 & 七号 & 八号 \\
 		4 & -4 & 5 & -5 & 6 & -6 & 7 & 8 \\
 		\bottomrule
-	\end{tabular}
+	\end{tabularx}}
 \end{center}
-{\zihao{0}初号}； \dots {\zihao{4}四号}；\dots {\zihao{7}{七号}}
+
+\clearpage
+\begin{tabular}{ll}
+    {\zihao{0}初号}  & {\zihao{0}42}   \\
+    {\zihao{-0}小初} & {\zihao{-0}36}   \\
+    {\zihao{1}一号}  & {\zihao{1}26}   \\
+    {\zihao{-1}小一} & {\zihao{-1}24}   \\
+    {\zihao{2}二号}  & {\zihao{2}22}   \\
+    {\zihao{-2}小二} & {\zihao{-2}18}   \\
+    {\zihao{3}三号}  & {\zihao{3}16}   \\
+    {\zihao{-3}小三} & {\zihao{-3}15}   \\
+    {\zihao{4}四号}  & {\zihao{4}14}   \\
+    {\zihao{-4}小四} & {\zihao{-4}12}   \\
+    {\zihao{5}五号}  & {\zihao{5}10.5} \\
+    {\zihao{-5}小五} & {\zihao{-5}9}    \\
+    {\zihao{6}六号}  & {\zihao{6}7.5}  \\
+    {\zihao{-6}小六} & {\zihao{-6}6.5}  \\
+    {\zihao{7}七号}  & {\zihao{7}5.5}  \\
+    {\zihao{8}八号} & {\zihao{8}5}    \\
+\end{tabular}
 
 \subsection{划线标记}
 \begin{verbatim}

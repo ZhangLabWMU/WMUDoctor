@@ -1,6 +1,6 @@
 \NeedsTeXFormat{LaTeX2e}[1999/12/01]
 \ProvidesClass{WMUDoctor}[2020/06/11 V1.0 Thesis for WMUer]
-\LoadClass[a4paper,UTF8,openany,oneside]{ctexbook}
+\LoadClass[a4paper,UTF8,openany,oneside,draft]{ctexbook}
 \AtEndOfPackage{\input{WMU.cfg}}%很关键配置文件
 %%=======论文页边距一般要求：上边距2.54cm、下边距2.54cm,左右边距3.00cm,页眉1.50cm,页脚1.75cm
 \RequirePackage[top=2.54cm, bottom=2.54cm, outer=3.00cm, inner=3.00cm, headheight=1.5cm, footskip=1.75cm, heightrounded]{geometry}
@@ -34,13 +34,13 @@
 \RequirePackage{xstring}
 \RequirePackage[unicode,psdextra]{hyperref}%Required for hyperlinks
 \RequirePackage[nameinlink]{cleveref}
-% \RequirePackage{enumerate}
 \RequirePackage{enumitem}
 \RequirePackage[amsmath,thmmarks,hyperref]{ntheorem}
 \RequirePackage{algorithm}
 \RequirePackage{algorithmic}
 \RequirePackage{caption}
 \RequirePackage{ulem}
+\RequirePackage{tabularx}
 \pagestyle{fancy}% Enables the custom headers/footers
 \fancypagestyle{frontmatterstyle}{
     \fancyhf{}
@@ -66,11 +66,14 @@
 }
 \AtBeginDocument{\addtocontents{toc}{\protect\thispagestyle{frontmatterstyle}}}
 %=======设置全局字体
-    % 设置宋体为默认CJK字体，因宋体本身不包括粗体和斜体，需同时添加宋体的自动添加伪粗体及伪斜体设置
+    % 设置宋体为默认CJK衬线字体，因宋体本身不包括粗体和斜体，需同时添加宋体的自动添加伪粗体及伪斜体设置
 \setCJKmainfont[AutoFakeBold=2, AutoFakeSlant=0.2]{simsun.ttc}
+    % 设置黑体为默认CJK无衬线字体，因黑体本身不包括粗体和斜体，需同时添加黑体的自动添加伪粗体及伪斜体设置
+\setCJKsansfont[AutoFakeBold=2, AutoFakeSlant=0.2]{simhei.ttf}
     % 设置全局非CJK字体为Time New Roman
 \setmainfont[BoldFont={timesbd.ttf},ItalicFont={timesi.ttf}, BoldItalicFont={timesbi.ttf}]{times.ttf}
-    % 修改黑体/楷体/仿宋
+    % 修改宋体/黑体/楷体/仿宋
+\renewcommand{\songti}{\CJKfontspec[AutoFakeBold=2, AutoFakeSlant=0.2]{simsun.ttc}}
 \renewcommand{\heiti}{\CJKfontspec[AutoFakeBold=2, AutoFakeSlant=0.2]{simhei.ttf}}
 \renewcommand{\kaishu}{\CJKfontspec[AutoFakeBold=2, AutoFakeSlant=0.2]{simkai.ttf}}
 \renewcommand{\fangsong}{\CJKfontspec[AutoFakeBold=2, AutoFakeSlant=0.2]{simfang.ttf}}
@@ -142,7 +145,18 @@
 \def\WMU@underline[#1]#2{%
     \uline{\hbox to #1{\hfill#2\hfill}}}
 \def\WMUunderline{\@ifnextchar[\WMU@underline\underline}
-\def\chair#1#2#3{#1\ \ #2\ \ #3}
+% \def\chair#1#2#3{#1\ \ #2\ \ #3}
+
+
+
+
+
+
+
+
+
+
+
 
 
 \renewcommand\maketitle{%封面样式
@@ -150,25 +164,27 @@
     \thispagestyle{empty}
     % 第1页：基本情况
     \begin{center}
-    	\begin{table}[!htbp]
-    		\centering
-    		\begin{tabular}{p{250pt}p{62pt}l}
-    			{\bf\heiti\zihao{4}\WMU@label@categoryid \the\categoryid} & %插入分类号 
-    			{\bf\heiti\zihao{4}\WMU@label@codeid} & {\bf\heiti\zihao{4} \the\codeid}\\[0.40cm] %插入单位代码
-    			& 
-    			{\bf\heiti\zihao{4}\WMU@label@studentid} & {\bf\heiti\zihao{4} \the\studentid}\\[0.40cm] %插入学号
-    		\end{tabular}
-    	\end{table}
-    	\vspace{0.75cm}%设置垂直间距
-        \includegraphics[width=12.43cm]{wmu.jpg}\\%插入温医大图标
+        % 封面单位信息
+        \begin{table}
+            \setlength{\tabcolsep}{0mm}{
+            \begin{tabularx}{15cm}{p{55pt}p{250pt}p{70pt}l}
+                {\songti\zihao{4}\WMU@label@categoryid} & {\bf\songti\zihao{4} \the\categoryid} & %插入分类号 
+                {\songti\zihao{4}\WMU@label@codeid} & {\bf\songti\zihao{4} \the\codeid}\\[0.40cm] %插入单位代码
+                & & {\songti\zihao{4}\WMU@label@studentid} & {\bf\songti\zihao{4} \the\studentid}\\[0.40cm] %插入学号
+            \end{tabularx}}
+        \end{table}
+        \vspace{0.75cm}%设置垂直间距
+        % 插入温医大图标
+        \includegraphics[width=12.43cm]{wmu.jpg}\\
         \vspace{0.25cm}%设置垂直间距
-        {\bf\heiti\WMU@label@thesis\\}%
+        {\heiti\WMU@label@thesis\\}%
         \vspace{1.25cm}
         \zihao{4}
         \def\tabcolsep{6pt}
         \expandarg
         \newcounter{title_str_number}
         \vspace*{50pt}
+        % 论文标题
         \begin{tabular}{rl}%标题右对齐，内容左对齐
             \bf \songti \WMU@label@titleZh%中文标题折行输出
             \forloop{title_str_number}{1}{\value{title_str_number}<6}{%整个循环不会超过6
@@ -179,13 +195,13 @@
             }%
         \end{tabular}
         \begin{tabular}{cl}%标题居中，内容左对齐
-            {\bf \WMU@label@author} &
+            {\WMU@label@author} &
             {\songti\zihao{3} \@author}\\[0.40cm]%作者信息
-            {\bf \WMU@label@major} &
+            {\WMU@label@major} &
             {\songti\zihao{3} \the\major}\\[0.40cm]%学科专业
-            {\bf \WMU@label@studytype} &
+            {\WMU@label@studytype} &
             {\songti\zihao{3} \the\studytype}\\[0.40cm]%培养类型
-            {\bf \WMU@label@advisor} &
+            {\WMU@label@advisor} &
             {\songti\zihao{3} \the\advisor}\\[0.40cm]%指导老师
         \end{tabular}
         \par
@@ -205,7 +221,7 @@
     		}%
     	}%
     \end{tabular}
-    % ~\\[10cm]
+    ~\\[10cm]
     \clearpage
 }
 
