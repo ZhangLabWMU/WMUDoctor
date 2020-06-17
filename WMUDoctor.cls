@@ -84,9 +84,9 @@
 % ═══════════════════════════════════════════════════════════════
 \setCJKmainfont[AutoFakeBold=2, AutoFakeSlant=0.2]{simsun.ttc}
 % ═══════════════════════════════════════════════════════════════
-% 🍓🍓 设置黑体为默认CJK无衬线字体，因黑体本身不包括粗体和斜体，需同时添加黑体的自动添加伪粗体及伪斜体设置
+% 🍓🍓 设置黑体为默认CJK无衬线字体
 % ═══════════════════════════════════════════════════════════════
-\setCJKsansfont[AutoFakeBold=2, AutoFakeSlant=0.2]{黑体}
+\setCJKsansfont{SimHei}
 % ═══════════════════════════════════════════════════════════════
 % 🍓🍓 设置全局非CJK字体为Time New Roman
 % ═══════════════════════════════════════════════════════════════
@@ -191,10 +191,11 @@
 \newtoks\titlextra%标题多余一行时添加
 \newtoks\entitle%英文标题
 \newtoks\entitletra%标题多余一行时添加
-%\newtoks\chair%评委主席
+\newtoks\chair%评委主席
 \newtoks\member%评审成员
 \newtoks\submityear%提交年份
 \newtoks\submitmonth%提交月份
+\newtoks\submitday%提交日
 % ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 % 🍋 标题页，需要添加循环函数，判定多于一行的情况
 % ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
@@ -206,14 +207,6 @@
         \underline
     }
 % \def\chair#1#2#3{#1\ \ #2\ \ #3}
-
-
-
-
-
-
-
-
 
 
 \renewcommand\maketitle{%封面样式
@@ -234,14 +227,14 @@
         % 插入温医大图标
         \includegraphics[width=12.43cm]{wmu.jpg}\\
         \vspace{0.25cm}%设置垂直间距
-        {\heiti \WMU@label@thesis\\}%
+        {\heiti\WMU@label@thesis\\}%
         \vspace{1.25cm}
         \zihao{4}
         \def\tabcolsep{6pt}
         \expandarg
         \newcounter{title_str_number}
         \vspace*{50pt}
-    % 论文标题
+        % 论文标题
         \begin{tabular}{rl}%标题右对齐，内容左对齐
             \bf \songti \WMU@label@titleZh%中文标题折行输出
             \forloop{title_str_number}{1}{\value{title_str_number}<6}{%整个循环不会超过6
@@ -269,17 +262,37 @@
     \end{center}
     \clearpage
     %=======评委信息页：标题
-    ~\\
+    ~\\[1cm]
     \begin{tabular}{cl}%标题居中，内容左对齐
     	\bf \songti \WMU@label@titleZh%中文标题折行输出
     	\forloop{title_str_number}{1}{\value{title_str_number}<6}{%整个循环不会超过6
     		\StrFindGroup{\@title}{\value{title_str_number}}[\mygroup]%
     		\IfStrEq{\mygroup}{}{}{%
-    			& {\StrFindGroup{\@title}{\value{title_str_number}}[\mygroup]\WMUunderline[325pt]{\songti\fontspec{Times New Roman}\zihao{3}\bf\mygroup}}\\[0.40cm]%
+    			& {\StrFindGroup{\@title}{\value{title_str_number}}[\mygroup]\WMUunderline[325pt]{\zihao{3}\bf\mygroup}}\\[0.40cm]%
     		}%
     	}%
     \end{tabular}
     ~\\[10cm]
+    \begin{tabular}{ll}%标题居中，内容左对齐
+        {\WMU@label@chair} & {\WMUunderline[270pt]{\zihao{3}\the\chair}}\\[0.40cm]%答辩委员会主席
+        % {\WMU@label@member} & 
+        \WMU@label@member%中文标题折行输出
+    	\forloop{title_str_number}{1}{\value{title_str_number}<6}{%整个循环不会超过6
+    		\StrFindGroup{\the\member}{\value{title_str_number}}[\mygroup]%
+    		\IfStrEq{\mygroup}{}{}{%
+    			& {\StrFindGroup{\the\member}{\value{title_str_number}}[\mygroup]\WMUunderline[270pt]{\zihao{3}\mygroup}}\\[0.40cm]%
+    		}%
+        }%答辩委员会委员
+    \end{tabular}
+    ~\\[2cm]
+    % 答辩日期
+    % \begin{table}
+    %     \centering
+        \begin{tabular}{lc}
+           {\bfseries{\WMU@label@answerday}} & {\WMUunderline[270pt]{\zihao{3}二〇 \the\submityear ~年~ \the\submitmonth ~月~ \the\submitday ~日}}\\[0.4cm]
+        \end{tabular}
+        
+    
     \clearpage
 }
 
