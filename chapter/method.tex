@@ -15,7 +15,7 @@
 \subsection{模板文件结构\label{sec:files}}
 整个模板根目录的文件列表如下：
 \begin{center}
-    \begin{table}
+    \begin{table}[htbp]
         \setlength{\tabcolsep}{10mm}{
             \begin{tabularx}{15cm}{llc}
                 \toprule
@@ -31,7 +31,9 @@
             \end{tabularx}}
     \end{table}
 \end{center}
-注： \textcolor{red}{{*}} 表示\LaTeX{}模板必须的文件。
+注：\textcolor{red}{{*}} 表示\LaTeX{}模板必须的文件。
+
+
 \subsection{示例}
 对于论文中最常使用的一些功能在本节中给出示例。
 \subsection{公式}
@@ -52,7 +54,7 @@
                                                       & =X(f)
 \end{align}
 \subsection{表格}
-\begin{table}[H]
+\begin{table}[htbp]
     \begin{center}
         \caption{希腊字母表\label{tab:Greek}}
         \setlength{\tabcolsep}{10mm}{
@@ -166,7 +168,7 @@ return 0;
 \end{lstlisting}
 \section{依赖}
 WMUDoctor依赖于以下宏包，这些宏包在常见的\LaTeX{}发行版中都包括，在安装使用之前，请确定你的\TeX{}发行版中都已正常安装这些宏包
-\begin{table}[H]
+\begin{table}[htbp]
     \centering
     \setlength{\tabcolsep}{11mm}{
     \begin{tabularx}{15cm}{cccc}
