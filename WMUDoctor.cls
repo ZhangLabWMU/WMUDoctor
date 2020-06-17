@@ -33,8 +33,8 @@
 \RequirePackage{listings}
 \RequirePackage{xcolor}
 \RequirePackage{multirow}
-\RequirePackage{fancyhdr}%Needed to define custom headers/footers
-\RequirePackage{lastpage}%Number of pages in the document
+\RequirePackage{fancyhdr}%需要自定义页眉/页脚
+\RequirePackage{lastpage}%文件中的页数
 \RequirePackage{etoolbox}
 \RequirePackage[titles,subfigure]{tocloft}%控制生成的表格和图片的目录格式
 \RequirePackage{titlesec}
@@ -42,7 +42,7 @@
 \RequirePackage{makecell}
 \RequirePackage{forloop}
 \RequirePackage{xstring}
-\RequirePackage[unicode,psdextra]{hyperref}%Required for hyperlinks
+\RequirePackage[unicode,psdextra]{hyperref}%超链接
 \RequirePackage[nameinlink]{cleveref}
 \RequirePackage{enumitem}
 \RequirePackage[amsmath,thmmarks,hyperref]{ntheorem}
@@ -51,11 +51,11 @@
 \RequirePackage{caption}
 \RequirePackage{ulem}
 \RequirePackage{tabularx}
-\pagestyle{fancy}% Enables the custom headers/footers
+\pagestyle{fancy}% 启用自定义页眉/页脚
 \fancypagestyle{frontmatterstyle}{
     \fancyhf{}
     \renewcommand{\headrulewidth}{0pt}
-    \fancyfoot{} % clear all footer fields
+    \fancyfoot{} % 除所有页脚字段
     \fancyfoot[C]{\thepage} %
     \renewcommand{\thepage}{\Roman{page}}
 }
@@ -65,12 +65,12 @@
 \fancypagestyle{mainmatterstyle}{
     \fancyhf{}
     \renewcommand{\headrulewidth}{0pt}
-    \fancyfoot{} % clear all footer fields
+    \fancyfoot{} % 除所有页脚字段
     \fancyfoot[C]{\thepage} %
 }
 
 \appto\mainmatter{\pagestyle{mainmatterstyle}}
-\appto\mainmatter{\linespread{1.3889}\selectfont}   %行距
+\appto\mainmatter{\linespread{1.27}\selectfont}   %行距
 \fancypagestyle{plain}{
     \thispagestyle{mainmatterstyle}
 }
@@ -86,7 +86,7 @@
 % ═══════════════════════════════════════════════════════════════
 % 🍓🍓 设置黑体为默认CJK无衬线字体，因黑体本身不包括粗体和斜体，需同时添加黑体的自动添加伪粗体及伪斜体设置
 % ═══════════════════════════════════════════════════════════════
-\setCJKsansfont[AutoFakeBold=2, AutoFakeSlant=0.2]{simhei.ttf}
+\setCJKsansfont[AutoFakeBold=2, AutoFakeSlant=0.2]{黑体}
 % ═══════════════════════════════════════════════════════════════
 % 🍓🍓 设置全局非CJK字体为Time New Roman
 % ═══════════════════════════════════════════════════════════════
@@ -103,7 +103,6 @@
 % ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 % 🍋 修改章节样式
 % ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-
 %\newcommand\prechaptername{}
 %\newcommand\postchaptername{}
 % 🌚🌒🌓🌔🌝🌖🌗🌘🌚🌒🌓🌔🌝🌖🌗🌘🌚🌒🌓🌔🌝🌖🌗🌚🌒🌓🌔🌝🌖🌗🌚
@@ -178,6 +177,8 @@
 \titleformat{\subsubsection}{\bf\zihao{-4}\heiti}{\thesubsubsection}{0.5em}{}
 \titlespacing{\subsubsection}{0pt}{5pt}{5pt}
 % 🌚🌒🌓🌔🌝🌖🌗🌘🌚🌒🌓🌔🌝🌖🌗🌘🌚🌒🌓🌔🌝🌖🌗🌚🌒🌓🌔🌝🌖🌗🌚
+% 🌚🌒🌓🌔🌝🌖🌗🌘🌚🌒🌓🌔🌝🌖🌗🌘🌚🌒🌓🌔🌝🌖🌗🌚🌒🌓🌔🌝🌖🌗🌚
+% 🌚🌒🌓🌔🌝🌖🌗🌘🌚🌒🌓🌔🌝🌖🌗🌘🌚🌒🌓🌔🌝🌖🌗🌚🌒🌓🌔🌝🌖🌗🌚
 % ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 % 🍋 标题页信息
 % ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
@@ -198,12 +199,13 @@
 % 🍋 标题页，需要添加循环函数，判定多于一行的情况
 % ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 \def\WMU@underline[#1]#2{%
-    \uline{\hbox to #1{\hfill#2\hfill}}}
-\def\WMUunderline{\@ifnextchar[\WMU@underline\underline}
+    \uline{\hbox to #1{#2\hfill}}}
+\def\WMUunderline{
+    \@ifnextchar[
+        \WMU@underline
+        \underline
+    }
 % \def\chair#1#2#3{#1\ \ #2\ \ #3}
-
-
-
 
 
 
@@ -223,23 +225,23 @@
         \begin{table}
             \setlength{\tabcolsep}{0mm}{
             \begin{tabularx}{15cm}{p{55pt}p{250pt}p{70pt}l}
-                {\songti\zihao{4}\WMU@label@categoryid} & {\bf\songti\zihao{4} \the\categoryid} & %插入分类号 
-                {\songti\zihao{4}\WMU@label@codeid} & {\bf\songti\zihao{4} \the\codeid}\\[0.40cm] %插入单位代码
-                & & {\songti\zihao{4}\WMU@label@studentid} & {\bf\songti\zihao{4} \the\studentid}\\[0.40cm] %插入学号
+                {\songti\zihao{4}\WMU@label@categoryid} & {\songti\zihao{4} \the\categoryid} & %插入分类号 
+                {\songti\zihao{4}\WMU@label@codeid} & {\songti\zihao{4} \the\codeid}\\[4mm] %插入单位代码
+                & & {\songti\zihao{4}\WMU@label@studentid} & {\songti\zihao{4} \the\studentid}\\[4mm] %插入学号
             \end{tabularx}}
         \end{table}
         \vspace{0.75cm}%设置垂直间距
         % 插入温医大图标
         \includegraphics[width=12.43cm]{wmu.jpg}\\
         \vspace{0.25cm}%设置垂直间距
-        {\heiti\WMU@label@thesis\\}%
+        {\heiti \WMU@label@thesis\\}%
         \vspace{1.25cm}
         \zihao{4}
         \def\tabcolsep{6pt}
         \expandarg
         \newcounter{title_str_number}
         \vspace*{50pt}
-        % 论文标题
+    % 论文标题
         \begin{tabular}{rl}%标题右对齐，内容左对齐
             \bf \songti \WMU@label@titleZh%中文标题折行输出
             \forloop{title_str_number}{1}{\value{title_str_number}<6}{%整个循环不会超过6
@@ -249,6 +251,7 @@
                 }%
             }%
         \end{tabular}
+        ~\\[1cm]
         \begin{tabular}{cl}%标题居中，内容左对齐
             {\WMU@label@author} &
             {\songti\zihao{3} \@author}\\[0.40cm]%作者信息
@@ -259,8 +262,8 @@
             {\WMU@label@advisor} &
             {\songti\zihao{3} \the\advisor}\\[0.40cm]%指导老师
         \end{tabular}
-        \par
-        \vspace{70pt}
+        % \par
+        ~\\[3cm]
         % 答辩日期
         {\bf\zihao{3}二〇 \the\submityear ~~年~~ \the\submitmonth ~~月}
     \end{center}
