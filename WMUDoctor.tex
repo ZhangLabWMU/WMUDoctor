@@ -12,6 +12,7 @@
 %     超长标题\tiitle{{第一行}{...}{第N行}}
 \title{{温州医科大学博士示例论文}}%中文标题
 \entitle{{Doctor's Thesis Template of Wenzhou Medical Unviersity}}%英文标题
+\retitle{{温州医科大学博士示例论文综述}}
 % \chair{赵XX教授\ \ 温州医科大学}
 % \chair{{赵XX教授}, {温州医科大学}}
 % \chair{赵XX}{教授}{温州医科大学}
@@ -44,25 +45,28 @@
 % ═══════════════════════════════════════════════════════════════
 % 🍓🍓 插图索引和附表索引
 % ═══════════════════════════════════════════════════════════════
-\renewcommand{\listfigurename}{插图索引}
-\renewcommand{\listtablename}{附表索引}
-\setcounter{lofdepth}{1}
-\newcommand{\loflabel}{图~}
-\renewcommand{\numberline}[1]{\songti\zihao{4}\loflabel~#1\hspace*{\baselineskip}}
-\addcontentsline{toc}{chapter}{插图索引}
-\listoffigures
-\newcommand{\lotlabel}{表~}
-\renewcommand{\numberline}[1]{\songti\zihao{4}\lotlabel~#1\hspace*{\baselineskip}}
-\addcontentsline{toc}{chapter}{附表索引}
-\listoftables
+% \renewcommand{\listfigurename}{插图索引}
+% \renewcommand{\listtablename}{附表索引}
+% \setcounter{lofdepth}{1}
+% \newcommand{\loflabel}{图~}
+% \renewcommand{\numberline}[1]{\songti\zihao{4}\loflabel~#1\hspace*{\baselineskip}}
+% \addcontentsline{toc}{chapter}{插图索引}
+% \listoffigures
+% \newcommand{\lotlabel}{表~}
+% \renewcommand{\numberline}[1]{\songti\zihao{4}\lotlabel~#1\hspace*{\baselineskip}}
+% \addcontentsline{toc}{chapter}{附表索引}
+% \listoftables
 %\include{chapter/abstract}%学校模板貌似把摘要和正文一起编页码了，所以这个部分挪到了后面
 % ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 % 🍋 文章主体
 % ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-\mainmatter                   
-                                    
-% \include{chapter/abstract}%如果中英文摘要和目录一起罗马数字编页码，请把部分移到\mainmatter前
-% \include{chapter/preface}%各个章节内容单独分开撰写，方便编译和组织;
+\mainmatter
+% 非编号章节
+\backmatter
+\fancyhead[CO, CE]{WMUunderline[425pt]{\bfseries \zihao{4}温州医科大学博士学位论文}}
+\include{chapter/abbr}
+\include{chapter/abstract}%如果中英文摘要和目录一起罗马数字编页码，请把部分移到\mainmatter前
+\include{chapter/preface}%各个章节内容单独分开撰写，方便编译和组织;
 \include{chapter/method}
 \include{chapter/result}
 \include{chapter/discussion}
@@ -70,7 +74,7 @@
 % ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 % 🍋 论文后部
 % ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-\backmatter
+% \backmatter
 % ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 % 🍋 参考文献1
 % ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
@@ -78,7 +82,7 @@
 \printbib
 \include{chapter/appendix}%附录
 \include{chapter/thanks}%致谢
-% \include{chapter/review.tex}%综述
-% \include{chapter/declare.tex}%独创性声明
+\include{chapter/review}%综述
+\include{chapter/declare}%独创性声明
 % 🌚🌒🌓🌔🌝🌖🌗🌘🌚🌒🌓🌔🌝🌖🌗🌘🌚🌒🌓🌔🌝🌖🌗🌚🌒🌓🌔🌝🌖🌗🌚
 \end{document}
